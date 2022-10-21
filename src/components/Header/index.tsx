@@ -1,5 +1,11 @@
+import { HeaderContainer } from "./style";
+import logoCoffee from "../../assets/logo-coffee.svg";
+
+
 export function Header() {
 	return (
-		<h1>Header</h1>
+		<HeaderContainer>
+			<img src={logoCoffee} alt="" />
+		</HeaderContainer>
 	);
 }
