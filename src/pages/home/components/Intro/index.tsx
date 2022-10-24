@@ -12,25 +12,25 @@ export function Intro () {
 				</TitleContainer>
 				<ItemsContainer>
 					<div>
-						<ContainerIcon>
+						<ContainerIcon iconColor="yellowDark">
 							<ShoppingCart size={16} weight="fill"/>
 						</ContainerIcon>
 						<span>Compra simples e segura</span>
 					</div>
 					<div>
-						<ContainerIcon>
+						<ContainerIcon iconColor="gray">
 							<Package size={16} weight="fill"/>
 						</ContainerIcon>
 						<span>Embalagem mantém o café intacto</span>
 					</div>
 					<div>
-						<ContainerIcon>
+						<ContainerIcon iconColor="yellow">
 							<Timer size={16} weight="fill"/>
 						</ContainerIcon>
 						<span>Entrega rápida e rastreada</span>
 					</div>
 					<div>
-						<ContainerIcon>
+						<ContainerIcon iconColor="purple">
 							<Coffee size={16} weight="fill"/>
 						</ContainerIcon>
 						<span>O café chega fresquinho até você</span>
