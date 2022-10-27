@@ -6,3 +6,9 @@ export const ItemsContainer = styled.main`
         margin-bottom: 2.125rem;
     }
 `;
+
+export const ProductsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+`;

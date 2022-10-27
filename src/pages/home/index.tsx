@@ -1,12 +1,14 @@
 import { Intro } from "./components/Intro";
-import { ItemsContainer } from "./style";
+import { ItemsContainer, ProductsContainer } from "./style";
 import items from "../../assets/items.json";
+import { Product } from "./components/Product";
 
 export interface CofeeItem {
 	id: number,
 	name: string,
 	description: string,
 	price: number,
+	picture: string,
 	tags: string[]
 }
 
@@ -19,9 +21,11 @@ export function Home () {
 			<ItemsContainer>
 				<h2>Nossos cafés</h2>
 			</ItemsContainer>
-			{cofeeItems.map(cofeeItem => {
-				return (<h4>{cofeeItem.name}</h4>);
-			})}
+			<ProductsContainer>
+				{cofeeItems.map(cofeeItem => {
+					return (<Product key={cofeeItem.id} cofeeItem={cofeeItem} />);
+				})}
+			</ProductsContainer>
 		</div>
 	);
 }
