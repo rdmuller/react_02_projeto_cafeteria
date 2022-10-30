@@ -34,7 +34,6 @@ const BaseButton = styled.button`
 
     font-weight: 400;
     font-size: 0.875rem;
-
 `;
 
 export const ButtonLocation = styled(BaseButton)`

@@ -20,5 +20,10 @@ export const defaultTheme = {
 
 		"background": "#FAFAFA",
 		white: "#FFFFFF",
+	},
+
+	font: {
+		"body": "'Roboto', sans-serif",
+		"title": "'Baloo 2'",
 	}
 };
