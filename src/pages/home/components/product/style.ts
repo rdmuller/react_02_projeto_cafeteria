@@ -79,18 +79,29 @@ export const ProductBuy = styled.div`
         display: flex;
         gap: 0.25rem;
         flex-direction: row;
+        height: 2.375rem;
         padding: 0.5rem;
+
+        span {
+            color: ${props => props.theme.color["base-title"]};
+        }
     }
 
     button {
         border: 0;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .ButtonQuanttity {
         color: ${props => props.theme.color["purple"]};
         background-color: transparent;
-        height: 100%;
+    }
+
+    .ButtonQuanttity:hover {
+        color: ${props => props.theme.color["purple-dark"]};
     }
 
     .ButtonBuy {
@@ -99,5 +110,9 @@ export const ProductBuy = styled.div`
         height: 2.375rem;
         background-color: ${props => props.theme.color["purple-dark"]};
         color: ${props => props.theme.color["base-card"]}
+    }
+
+    .ButtonBuy:hover {
+        background-color: ${props => props.theme.color["purple"]};
     }
 `;
