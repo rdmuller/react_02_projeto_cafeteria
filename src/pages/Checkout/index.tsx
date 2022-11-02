@@ -1,6 +1,12 @@
-import { AddressContainer, CofeeCardContainer, MainContainer, RequestContainer } from "./styles";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../contexts/ShoppingCart";
+import { ProductCart } from "./components/ProductCart";
+import { AddressContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer } from "./styles";
 
 export function Checkout() {
+	const { products } = useContext(ShoppingCartContext);
+
+
 	return (
 		<MainContainer>
 			<RequestContainer>
@@ -9,6 +15,11 @@ export function Checkout() {
 			</RequestContainer>
 			<CofeeCardContainer>
 				<h4>Cafés selecionados</h4>
+				<SummaryContainer>
+					{products.map(item => 
+						<ProductCart key={item.productId} product={item} />
+					)}
+				</SummaryContainer>
 			</CofeeCardContainer>
 		</MainContainer> 
 	);

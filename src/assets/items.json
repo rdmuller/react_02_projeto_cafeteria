@@ -4,7 +4,7 @@
         "name":"Expresso tradicional",
         "description": "O tradicional café feito com água quente e grãos moídos",
         "price": 9.9,
-        "picture": "Expresso.svg",
+        "picture": "/src/assets/Expresso.svg",
         "tags":["TRADICIONAL"]
     },
     {
@@ -12,7 +12,7 @@
         "name":"Expresso americado",
         "description": "Expresso diluído, menos intenso que o tradicional",
         "price": 9.9,
-        "picture": "Americano.svg",
+        "picture": "/src/assets/Americano.svg",
         "tags":["TRADICIONAL"]
     },
     {
@@ -20,7 +20,7 @@
         "name":"Expresso cremoso",
         "description": "Café expresso tradicional com espuma cremosa",
         "price": 9.9,
-        "picture": "ExpressoCremoso.svg",
+        "picture": "/src/assets/ExpressoCremoso.svg",
         "tags":["TRADICIONAL"]
     },
     {
@@ -28,7 +28,7 @@
         "name":"Expresso gelado",
         "description": "Bebida preparada com café expresso e cubos de gelo",
         "price": 9.9,
-        "picture": "CafeGelado.svg",
+        "picture": "/src/assets/CafeGelado.svg",
         "tags":["TRADICIONAL", "GELADO"]
     },
     {
@@ -36,7 +36,7 @@
         "name":"Café com leite",
         "description": "Meio a meio de expresso tradicional com leite vaporizado",
         "price": 9.9,
-        "picture": "CafeComLeite.svg",
+        "picture": "/src/assets/CafeComLeite.svg",
         "tags":["TRADICIONAL","COM LEITE"]
     },
     {
@@ -44,7 +44,7 @@
         "name":"Latte",
         "description": "Uma dose de café expresso com o dobro de leite e espuma cremosa",
         "price": 9.9,
-        "picture": "Latte.svg",
+        "picture": "/src/assets/Latte.svg",
         "tags":["TRADICIONAL","COM LEITE"]
     },
     {
@@ -52,7 +52,7 @@
         "name":"Capuccino",
         "description": "Bebida com canela feita de doses iguais de café, leite e espuma",
         "price": 9.9,
-        "picture": "Capuccino.svg",
+        "picture": "/src/assets/Capuccino.svg",
         "tags":["TRADICIONAL","COM LEITE"]
     },
     {
@@ -60,7 +60,7 @@
         "name":"Macchiato",
         "description": "Café expresso misturado com um pouco de leite quente e espuma",
         "price": 9.9,
-        "picture": "Macchiato.svg",
+        "picture": "/src/assets/Macchiato.svg",
         "tags":["TRADICIONAL","COM LEITE"]
     },
     {
@@ -68,7 +68,7 @@
         "name":"Mocaccino",
         "description": "Café expresso com calda de chocolate, pouco leite e espuma",
         "price": 9.9,
-        "picture": "Mocaccino.svg",
+        "picture": "/src/assets/Mocaccino.svg",
         "tags":["TRADICIONAL","COM LEITE"]
     },
     {
@@ -76,7 +76,7 @@
         "name":"Chocolate quente",
         "description": "Bebida feita com chocolate dissolvido no leite quente e café",
         "price": 9.9,
-        "picture": "ChocolateQuente.svg",
+        "picture": "/src/assets/ChocolateQuente.svg",
         "tags":["ESPECIAL", "COM LEITE"]
     },
     {
@@ -84,7 +84,7 @@
         "name":"Cubano",
         "description": "Drink gelado de café expresso com rum, creme de leite e hortelã",
         "price": 9.9,
-        "picture": "Cubano.svg",
+        "picture": "/src/assets/Cubano.svg",
         "tags":["ESPECIAL", "ALCOÓLICO", "GELADO"]
     },
     {
@@ -92,7 +92,7 @@
         "name":"Havaiano",
         "description": "Bebida adocicada preparada com café e leite de coco",
         "price": 9.9,
-        "picture": "Havaiano.svg",
+        "picture": "/src/assets/Havaiano.svg",
         "tags":["ESPECIAL"]
     },
     {
@@ -100,7 +100,7 @@
         "name":"Árabe",
         "description": "Bebida preparada com grãos de café árabe e especiarias",
         "price": 9.9,
-        "picture": "Arabe.svg",
+        "picture": "/src/assets/Arabe.svg",
         "tags":["ESPECIAL"]
     },
     {
@@ -108,7 +108,7 @@
         "name":"Irlandês",
         "description": "Bebida a base de café, uísque irlandês, açúcar e chantilly",
         "price": 9.9,
-        "picture": "Irlandes.svg",
+        "picture": "/src/assets/Irlandes.svg",
         "tags":["ESPECIAL", "ALCOÓLICO"]
     }
 ]

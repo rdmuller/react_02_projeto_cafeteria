@@ -72,39 +72,12 @@ export const ProductBuy = styled.div`
     gap: 0.5rem;
     align-items: center;
 
-    div {
-        align-items: center;
-        border-radius: 6px;
-        background-color: ${props => props.theme.color["base-button"]};
-        display: flex;
-        gap: 0.25rem;
-        flex-direction: row;
-        height: 2.375rem;
-        padding: 0.5rem;
-
-        span {
-            color: ${props => props.theme.color["base-title"]};
-        }
-    }
-
-    button {
+    .ButtonBuy {
         border: 0;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    .ButtonQuanttity {
-        color: ${props => props.theme.color["purple"]};
-        background-color: transparent;
-    }
-
-    .ButtonQuanttity:hover {
-        color: ${props => props.theme.color["purple-dark"]};
-    }
-
-    .ButtonBuy {
         border-radius: 6px;
         width: 2.375rem;
         height: 2.375rem;

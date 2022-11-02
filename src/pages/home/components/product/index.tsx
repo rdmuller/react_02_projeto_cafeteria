@@ -1,6 +1,7 @@
-import { Minus, Plus, ShoppingCart } from "phosphor-react";
+import { ShoppingCart } from "phosphor-react";
 import { useContext, useState } from "react";
 import { CofeeItem } from "../..";
+import { ProductQuantity } from "../../../../components/ProductQuantity";
 import { ShoppingCartContext, ShoppingCartProduct } from "../../../../contexts/ShoppingCart";
 import { ProductFooter, ProductContainer, ProductDescription, ProductTags, ProductPrice, ProductBuy } from "./style";
 
@@ -12,21 +13,19 @@ export function Product({cofeeItem}: ProductProps) {
 	const [quantity, setQuantity] = useState(1);
 	const { addProductToCart } = useContext(ShoppingCartContext);
 
-	function handleIncrement() {
-		setQuantity(quantity + 1);
-	}
-
-	function handleDecrement() {
-		if (quantity > 1) {
-			setQuantity(quantity - 1);
+	function handleChangeQuantity(qty: number) {
+		if (quantity + qty > 1) {
+			setQuantity(quantity + qty);
 		}
 	}
 
 	function addProduct() {
 		const product = { 
+			productId: cofeeItem.id,
 			productName: cofeeItem.name,
 			productPrice: cofeeItem.price,
 			productQuantity: quantity,
+			productPicture: cofeeItem.picture,
 		} as ShoppingCartProduct;
 
 		addProductToCart(product);
@@ -35,7 +34,7 @@ export function Product({cofeeItem}: ProductProps) {
 
 	return (
 		<ProductContainer>
-			<img src={"/src/assets/" + cofeeItem.picture} alt="" />
+			<img src={cofeeItem.picture} alt="" />
 			<ProductTags>
 				{cofeeItem.tags.map(tag => { 
 					return(<span key={cofeeItem.id + tag}>{tag}</span>); 
@@ -49,15 +48,7 @@ export function Product({cofeeItem}: ProductProps) {
 			<ProductFooter>
 				<ProductPrice>{cofeeItem.price.toFixed(2)}</ProductPrice>
 				<ProductBuy>
-					<div>
-						<button className="ButtonQuanttity" onClick={handleDecrement}>
-							<Minus weight="bold" size={14} />
-						</button>
-						<span>{quantity}</span>
-						<button className="ButtonQuanttity" onClick={handleIncrement}>
-							<Plus weight="bold" size={14} />
-						</button>
-					</div>
+					<ProductQuantity productQuantity={quantity} onChange={handleChangeQuantity} />
 					<button className="ButtonBuy" onClick={addProduct}>
 						<ShoppingCart size={22} weight="fill" />
 					</button>

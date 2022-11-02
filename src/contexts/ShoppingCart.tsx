@@ -5,6 +5,7 @@ export interface ShoppingCartProduct {
     productQuantity: number;
     productPrice: number;
     productName: string;
+	productPicture: string;
 }
 
 interface ShoppingCartContextType {
@@ -22,7 +23,22 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 	const [products, setProducts] = useState<ShoppingCartProduct[]>([]);
 
 	function addProductToCart(newProduct: ShoppingCartProduct) {
-		setProducts(state => [...state, newProduct]);        
+		let productExists = false;
+		const newProducts = products.map(item => {
+			if (item.productId !== newProduct.productId) {
+				return item;
+			} else {
+				item.productQuantity += newProduct.productQuantity;
+				productExists = true;
+				return item;
+			}
+		});
+
+		if (!productExists) {
+			newProducts.push(newProduct);
+		}
+
+		setProducts(newProducts);
 	}
     
 	console.log(JSON.stringify(products));

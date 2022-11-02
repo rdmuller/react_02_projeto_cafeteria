@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 const BaseCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
     background-color: ${props => props.theme.color["base-card"]};
-    padding: 40px;
 `;
 
 export const MainContainer = styled.main`
@@ -15,6 +17,9 @@ export const MainContainer = styled.main`
 export const CofeeCardContainer = styled.div`
     display: flex;
     flex-direction: column;
+`;
+
+export const SummaryContainer = styled(BaseCard)`
 `;
 
 export const RequestContainer = styled.div`
