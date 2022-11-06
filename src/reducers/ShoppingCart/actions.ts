@@ -1,0 +1,4 @@
+export enum ActionTypes {
+    ADD_PRODUCT_TO_CART = "ADD_PRODUCT_TO_CART",
+    CHANGE_QUANTITY = "CHANGE_QUANTITY"
+}

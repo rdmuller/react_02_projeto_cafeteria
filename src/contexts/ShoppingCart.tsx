@@ -1,16 +1,11 @@
-import { createContext, ReactNode, useState } from "react";
-
-export interface ShoppingCartProduct {
-    productId: number;
-    productQuantity: number;
-    productPrice: number;
-    productName: string;
-	productPicture: string;
-}
+import { createContext, ReactNode, useReducer } from "react";
+import { ActionTypes } from "../reducers/ShoppingCart/actions";
+import { ShoppingCartProduct, ShoppingCartReducer } from "../reducers/ShoppingCart/reducer";
 
 interface ShoppingCartContextType {
     products: ShoppingCartProduct[];
     addProductToCart: (product: ShoppingCartProduct) => void;
+	changeQuantity: (product: ShoppingCartProduct, addQty: number) => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
@@ -20,31 +15,31 @@ type ShoppingCartContextProviderProps = {
 }
 
 export function ShoppingCartContextProvider({children, }: ShoppingCartContextProviderProps) {
-	const [products, setProducts] = useState<ShoppingCartProduct[]>([]);
+	const [shoppingCartState, dispatch] = useReducer(ShoppingCartReducer, { products: [] });
 
 	function addProductToCart(newProduct: ShoppingCartProduct) {
-		let productExists = false;
-		const newProducts = products.map(item => {
-			if (item.productId !== newProduct.productId) {
-				return item;
-			} else {
-				item.productQuantity += newProduct.productQuantity;
-				productExists = true;
-				return item;
+		dispatch({
+			type: ActionTypes.ADD_PRODUCT_TO_CART,
+			payload: {
+				newProduct,
+			},
+		});
+	}
+
+	function changeQuantity(product: ShoppingCartProduct, addQty: number) {
+		dispatch({
+			type: ActionTypes.CHANGE_QUANTITY,
+			payload: {
+				product,
+				addQty,
 			}
 		});
-
-		if (!productExists) {
-			newProducts.push(newProduct);
-		}
-
-		setProducts(newProducts);
 	}
-    
-	console.log(JSON.stringify(products));
 
+	const { products } = shoppingCartState;
+    
 	return (
-		<ShoppingCartContext.Provider value={{ products, addProductToCart }}>
+		<ShoppingCartContext.Provider value={{ products, addProductToCart, changeQuantity, }}>
 			{children}
 		</ShoppingCartContext.Provider>
 	);

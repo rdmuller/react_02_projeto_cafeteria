@@ -2,7 +2,8 @@ import { ShoppingCart } from "phosphor-react";
 import { useContext, useState } from "react";
 import { CofeeItem } from "../..";
 import { ProductQuantity } from "../../../../components/ProductQuantity";
-import { ShoppingCartContext, ShoppingCartProduct } from "../../../../contexts/ShoppingCart";
+import { ShoppingCartContext } from "../../../../contexts/ShoppingCart";
+import { ShoppingCartProduct } from "../../../../reducers/ShoppingCart/reducer";
 import { ProductFooter, ProductContainer, ProductDescription, ProductTags, ProductPrice, ProductBuy } from "./style";
 
 interface ProductProps {
@@ -14,9 +15,7 @@ export function Product({cofeeItem}: ProductProps) {
 	const { addProductToCart } = useContext(ShoppingCartContext);
 
 	function handleChangeQuantity(qty: number) {
-		if (quantity + qty > 1) {
-			setQuantity(quantity + qty);
-		}
+		setQuantity(quantity + qty);
 	}
 
 	function addProduct() {

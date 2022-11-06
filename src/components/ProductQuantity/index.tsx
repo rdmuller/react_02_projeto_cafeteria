@@ -7,9 +7,11 @@ interface ProductQuantityProps {
 }
 
 export function ProductQuantity({productQuantity, onChange}: ProductQuantityProps) {
+	const disableDecrement = (productQuantity <= 1);
+
 	return (
 		<ProductQuantityContainer>
-			<button className="ButtonQuanttity" onClick={() => onChange(-1)}>
+			<button className="ButtonQuanttity" disabled={disableDecrement} onClick={() => onChange(-1)}>
 				<Minus weight="bold" size={14} />
 			</button>
 			<span>{productQuantity}</span>
