@@ -6,6 +6,7 @@ const BaseCard = styled.div`
     padding: 2.5rem;
     gap: 1.5rem;
     background-color: ${props => props.theme.color["base-card"]};
+    width: auto;
 `;
 
 export const MainContainer = styled.main`
@@ -21,6 +22,7 @@ export const CofeeCardContainer = styled.div`
 `;
 
 export const SummaryContainer = styled(BaseCard)`
+    border-radius: 6px 44px
 `;
 
 export const RequestContainer = styled.div`

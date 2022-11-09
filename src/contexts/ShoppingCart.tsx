@@ -4,6 +4,9 @@ import { ShoppingCartProduct, ShoppingCartReducer } from "../reducers/ShoppingCa
 
 interface ShoppingCartContextType {
     products: ShoppingCartProduct[];
+	totalValue: number;
+	totalDelivery: number;
+	totalItems: number;
     addProductToCart: (product: ShoppingCartProduct) => void;
 	changeQuantity: (product: ShoppingCartProduct, addQty: number) => void;
 }
@@ -15,7 +18,13 @@ type ShoppingCartContextProviderProps = {
 }
 
 export function ShoppingCartContextProvider({children, }: ShoppingCartContextProviderProps) {
-	const [shoppingCartState, dispatch] = useReducer(ShoppingCartReducer, { products: [] });
+	const [shoppingCartState, dispatch] = useReducer(ShoppingCartReducer, 
+		{ 
+			products: [],
+			totalValue: 0,
+			totalItems: 0,
+			totalDelivery: 0,
+		});
 
 	function addProductToCart(newProduct: ShoppingCartProduct) {
 		dispatch({
@@ -36,10 +45,10 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 		});
 	}
 
-	const { products } = shoppingCartState;
+	const { totalDelivery, totalItems, totalValue, products, } = shoppingCartState;
     
 	return (
-		<ShoppingCartContext.Provider value={{ products, addProductToCart, changeQuantity, }}>
+		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, totalItems, products, addProductToCart, changeQuantity, }}>
 			{children}
 		</ShoppingCartContext.Provider>
 	);

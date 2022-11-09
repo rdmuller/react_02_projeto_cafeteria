@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ProductQuantity } from "../../../../components/ProductQuantity";
 import { ShoppingCartContext } from "../../../../contexts/ShoppingCart";
 import { ShoppingCartProduct } from "../../../../reducers/ShoppingCart/reducer";
-import { LabelPrice, ProductCartContainer } from "./styles";
+import { LabelPrice, ProductCartContainer, ProductData, ProductInfo, ProductName } from "./styles";
 
 interface ProductProps {
     product: ShoppingCartProduct;
@@ -17,18 +17,18 @@ export function ProductCart({product}: ProductProps) {
 
 	return (
 		<ProductCartContainer>
-			<div>
-				<img src={product.productPicture} alt="" />
-				<div>
+			<ProductInfo>
+				<ProductData>
+					<img src={product.productPicture} alt="" />
 					<div>
-						<span>{product.productName}</span>
-						<LabelPrice>{product.productPrice.toFixed(2)}</LabelPrice>
+						<ProductName>{product.productName}</ProductName>
+						<div>
+							<ProductQuantity productQuantity={product.productQuantity} onChange={handleChangeQty} />
+						</div>
 					</div>
-					<div>
-						<ProductQuantity productQuantity={product.productQuantity} onChange={handleChangeQty} />
-					</div>
-				</div>
-			</div>
+				</ProductData>
+				<LabelPrice>{product.productValue.toFixed(2)}</LabelPrice>
+			</ProductInfo>
 			<hr />
 		</ProductCartContainer>
 	);

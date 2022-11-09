@@ -4,7 +4,7 @@ import { ProductCart } from "./components/ProductCart";
 import { AddressContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer } from "./styles";
 
 export function Checkout() {
-	const { products } = useContext(ShoppingCartContext);
+	const { products, totalDelivery, totalItems, totalValue } = useContext(ShoppingCartContext);
 
 
 	return (
@@ -19,6 +19,14 @@ export function Checkout() {
 					{products.map(item => 
 						<ProductCart key={item.productId} product={item} />
 					)}
+					<div>
+						<span>Total de itens</span>
+						<span>{totalItems.toFixed(2)}</span>
+						<span>Entrega</span>
+						<span>{totalDelivery.toFixed(2)}</span>
+						<span>Total</span>
+						<span>{totalValue.toFixed(2)}</span>
+					</div>
 				</SummaryContainer>
 			</CofeeCardContainer>
 		</MainContainer> 
