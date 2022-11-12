@@ -45,3 +45,32 @@ export const ProductData = styled.div`
 export const ProductName = styled.div`
     margin-bottom: 0.5rem;
 `;
+
+export const ButtonsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+`;
+
+export const ButtonRemove = styled.button`
+    display: flex;
+    gap: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 2rem;
+    border-radius: 6px;
+    border: 0;
+    background-color: ${props => props.theme.color["base-button"]};
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+
+    svg {
+        color: ${props => props.theme.color.purple};
+    }
+
+    :hover {
+        background-color: ${props => props.theme.color["base-hover"]};
+    }
+`;

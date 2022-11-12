@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../contexts/ShoppingCart";
 import { ProductCart } from "./components/ProductCart";
-import { AddressContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer } from "./styles";
+import { AddressContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer, SummaryTotals, LabelSummary, LabelTotalSummary, ButtonConfirm } from "./styles";
 
 export function Checkout() {
 	const { products, totalDelivery, totalItems, totalValue } = useContext(ShoppingCartContext);
-
 
 	return (
 		<MainContainer>
@@ -19,14 +18,21 @@ export function Checkout() {
 					{products.map(item => 
 						<ProductCart key={item.productId} product={item} />
 					)}
-					<div>
-						<span>Total de itens</span>
-						<span>{totalItems.toFixed(2)}</span>
-						<span>Entrega</span>
-						<span>{totalDelivery.toFixed(2)}</span>
-						<span>Total</span>
-						<span>{totalValue.toFixed(2)}</span>
-					</div>
+					<SummaryTotals>
+						<div>
+							<LabelSummary>Total de itens</LabelSummary>
+							<span>{totalItems.toFixed(2)}</span>
+						</div>
+						<div>
+							<LabelSummary>Entrega</LabelSummary>
+							<span>{totalDelivery.toFixed(2)}</span>
+						</div>
+						<div>
+							<LabelTotalSummary>Total</LabelTotalSummary>
+							<LabelTotalSummary>{totalValue.toFixed(2)}</LabelTotalSummary>
+						</div>
+					</SummaryTotals>
+					<ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>
 				</SummaryContainer>
 			</CofeeCardContainer>
 		</MainContainer> 

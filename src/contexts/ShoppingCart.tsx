@@ -9,6 +9,7 @@ interface ShoppingCartContextType {
 	totalItems: number;
     addProductToCart: (product: ShoppingCartProduct) => void;
 	changeQuantity: (product: ShoppingCartProduct, addQty: number) => void;
+	removeProduct: (productId: number) => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
@@ -45,10 +46,19 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 		});
 	}
 
+	function removeProduct(productId: number) {
+		dispatch({
+			type: ActionTypes.DELETE_PRODUCT,
+			payload: {
+				productId
+			}
+		});
+	}
+
 	const { totalDelivery, totalItems, totalValue, products, } = shoppingCartState;
     
 	return (
-		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, totalItems, products, addProductToCart, changeQuantity, }}>
+		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, totalItems, products, addProductToCart, changeQuantity, removeProduct, }}>
 			{children}
 		</ShoppingCartContext.Provider>
 	);
