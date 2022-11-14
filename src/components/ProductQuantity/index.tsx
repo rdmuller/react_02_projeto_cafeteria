@@ -3,14 +3,15 @@ import { ProductQuantityContainer } from "./styles";
 
 interface ProductQuantityProps {
     productQuantity: number,
-    onChange: (qty: number) => void;
+    onChange: (qty: number) => void
+	size?: number;
 }
 
-export function ProductQuantity({productQuantity, onChange}: ProductQuantityProps) {
+export function ProductQuantity({productQuantity, onChange, size}: ProductQuantityProps) {
 	const disableDecrement = (productQuantity <= 1);
 
 	return (
-		<ProductQuantityContainer>
+		<ProductQuantityContainer style={{height: (size ?? 2.375 ) + "rem"}}>
 			<button className="ButtonQuanttity" disabled={disableDecrement} onClick={() => onChange(-1)}>
 				<Minus weight="bold" size={14} />
 			</button>

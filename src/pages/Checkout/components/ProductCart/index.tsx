@@ -28,7 +28,7 @@ export function ProductCart({product}: ProductProps) {
 					<div>
 						<ProductName>{product.productName}</ProductName>
 						<ButtonsContainer>
-							<ProductQuantity productQuantity={product.productQuantity} onChange={handleChangeQty} />
+							<ProductQuantity productQuantity={product.productQuantity} onChange={handleChangeQty} size={2} />
 							<ButtonRemove onClick={handleRemoveProduct}>
 								<Trash size={16} />
 								REMOVER
