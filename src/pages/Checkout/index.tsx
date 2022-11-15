@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../contexts/ShoppingCart";
 import { ProductCart } from "./components/ProductCart";
-import { AddressContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer, SummaryTotals, LabelSummary, LabelTotalSummary, ButtonConfirm } from "./styles";
+import { TitleContainer } from "./components/TitleContainer";
+import { BaseContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer, SummaryTotals, LabelSummary, LabelTotalSummary, ButtonConfirm } from "./styles";
 
 export function Checkout() {
 	const { products, totalDelivery, totalItems, totalValue } = useContext(ShoppingCartContext);
@@ -10,7 +11,12 @@ export function Checkout() {
 		<MainContainer>
 			<RequestContainer>
 				<h4>Complete seu pedido</h4>
-				<AddressContainer></AddressContainer>
+				<BaseContainer>
+					<TitleContainer title="Endereço de Entrega" description="Informe o endereço onde deseja receber seu pedido" type="address" />
+				</BaseContainer>
+				<BaseContainer>
+					<TitleContainer title="Pagamento" description="O pagamento é feito na entrega. Escolha a forma que deseja pagar" type="payment" />
+				</BaseContainer>
 			</RequestContainer>
 			<CofeeCardContainer>
 				<h4>Cafés selecionados</h4>

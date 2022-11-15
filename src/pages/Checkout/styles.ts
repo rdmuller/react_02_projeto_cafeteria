@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const BaseCard = styled.div`
+export const BaseContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 2.5rem;
@@ -22,7 +22,7 @@ export const CofeeCardContainer = styled.div`
     min-width: 28rem;
 `;
 
-export const SummaryContainer = styled(BaseCard)`
+export const SummaryContainer = styled(BaseContainer)`
     border-radius: 6px 44px;
 `;
 
@@ -30,10 +30,10 @@ export const RequestContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-width: 40rem;
-`;
 
-export const AddressContainer = styled(BaseCard)`
-
+    div:nth-child(n) {
+        margin-bottom: 0.75rem;
+    }
 `;
 
 export const SummaryTotals = styled.div`

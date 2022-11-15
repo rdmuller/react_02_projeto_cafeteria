@@ -45,3 +45,19 @@ export const ButtonCart = styled(BaseButton)`
     background-color: ${(props) => props.theme.color["yellow-light"]};
     color: ${(props) => props.theme.color["yellow-dark"]};
 `;
+
+export const ProductQtyContainer = styled.span`
+    display: flex;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: ${props => props.theme.color.white};
+    background-color: ${props => props.theme.color["yellow-dark"]};
+    border-radius: 50%;
+    height: 1.25rem;
+    width: 1.25rem;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin-top: calc(-1rem * 2);
+    margin-left: calc(1rem * 2);
+`;

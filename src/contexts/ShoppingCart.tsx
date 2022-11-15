@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer } from "react";
+import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { ActionTypes } from "../reducers/ShoppingCart/actions";
 import { ShoppingCartProduct, ShoppingCartReducer } from "../reducers/ShoppingCart/reducer";
 
@@ -7,6 +7,7 @@ interface ShoppingCartContextType {
 	totalValue: number;
 	totalDelivery: number;
 	totalItems: number;
+	qtyItems: number;
     addProductToCart: (product: ShoppingCartProduct) => void;
 	changeQuantity: (product: ShoppingCartProduct, addQty: number) => void;
 	removeProduct: (productId: number) => void;
@@ -25,7 +26,22 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 			totalValue: 0,
 			totalItems: 0,
 			totalDelivery: 0,
+			qtyItems: 0,
+		}, 
+		() => {
+			const storedState = localStorage.getItem("@react-02-coffe:cartState");
+
+			if (storedState) {
+				return JSON.parse(storedState);
+			} else {
+				return { products: [], totalValue: 0, totalItems: 0, totalDelivery: 0, qtyItems: 0 };
+			}
 		});
+
+	useEffect(() => {
+		const stateJSON = JSON.stringify(shoppingCartState);
+		localStorage.setItem("@react-02-coffe:cartState", stateJSON);
+	}, [shoppingCartState]);
 
 	function addProductToCart(newProduct: ShoppingCartProduct) {
 		dispatch({
@@ -53,12 +69,12 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 				productId
 			}
 		});
-	}
+	}	
 
-	const { totalDelivery, totalItems, totalValue, products, } = shoppingCartState;
+	const { totalDelivery, totalItems, totalValue, products, qtyItems, } = shoppingCartState;
     
 	return (
-		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, totalItems, products, addProductToCart, changeQuantity, removeProduct, }}>
+		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, addProductToCart, changeQuantity, removeProduct, }}>
 			{children}
 		</ShoppingCartContext.Provider>
 	);

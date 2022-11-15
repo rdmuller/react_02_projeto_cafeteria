@@ -15,6 +15,7 @@ interface ShoppingCartState {
 	totalItems: number;
 	totalDelivery: number;
 	totalValue: number;
+	qtyItems: number;
 }
 
 export function ShoppingCartReducer(state: ShoppingCartState, action: any) {
@@ -72,10 +73,12 @@ function calculateTotals(state: ShoppingCartState) {
 	let totalItems = 0;
 	const totalDelivery = 0;
 	let totalValue = 0;
+	let qtyItems = 0;
 
 	const products = state.products.map(item => {
 		item.productValue = item.productPrice * item.productQuantity;
 		totalItems += item.productValue;
+		qtyItems += 1;
 		return item;
 	});
 
@@ -87,5 +90,6 @@ function calculateTotals(state: ShoppingCartState) {
 		totalItems,
 		totalDelivery,
 		totalValue,
+		qtyItems,
 	};
 }

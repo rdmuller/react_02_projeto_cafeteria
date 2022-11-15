@@ -1,9 +1,13 @@
-import { ButtonCart, ButtonLocation, HeaderContainer } from "./style";
+import { ButtonCart, ButtonLocation, HeaderContainer, ProductQtyContainer } from "./style";
 import logoCoffee from "../../assets/logo-coffee.svg";
 import { NavLink } from "react-router-dom";
 import { MapPin, ShoppingCart } from "phosphor-react";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../contexts/ShoppingCart";
 
 export function Header() {
+	const { qtyItems } = useContext(ShoppingCartContext);
+
 	return (
 		<HeaderContainer>
 			<NavLink to="/">
@@ -20,6 +24,7 @@ export function Header() {
 				<NavLink to="/checkout" title="">
 					<ButtonCart>
 						<ShoppingCart size={22} weight="fill"/>
+						<ProductQtyContainer>{qtyItems}</ProductQtyContainer>
 					</ButtonCart>
 				</NavLink>
 			</nav>
