@@ -7,14 +7,14 @@ interface TitleContainerProps {
     description: string,
 }
 
-
-
 export function TitleContainer({ title, description, type }: TitleContainerProps) {
 	return (
 		<HeaderTitleContainer>
-			{ type==="address" ? <MapPin size={22} /> : <CurrencyDollar size={22} /> }
-			<span>{title}</span>
-			<p>{description}</p>
+			{ type==="address" ? <MapPin className="map" size={22} /> : <CurrencyDollar className="currency" size={22} /> }
+			<div>
+				<span>{title}</span>
+				<p>{description}</p>
+			</div>
 		</HeaderTitleContainer>
 	);
 }
