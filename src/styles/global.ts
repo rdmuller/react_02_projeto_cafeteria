@@ -24,6 +24,23 @@ export const GlobalStyle = createGlobalStyle`
         color: ${props => props.theme.color["base-text"]}
     }
 
+    input {
+        padding: 0.75rem;
+        border-radius: 4px;
+        border: 1px solid ${props => props.theme.color["base-button"]};
+        color: ${props => props.theme.color["base-text"]};
+        font-size: 0.875rem;
+    }
+
+    input:focus {
+        outline: 0px;
+        box-shadow: 0 0 0 1px ${props => props.theme.color["yellow-dark"]};
+    }
+
+    input::placeholder {
+        color: ${props => props.theme.color["base-label"]};
+    }
+
     h1, h2, h3, h4 {
         font-family: 'Baloo 2';
         line-height: 1.3;

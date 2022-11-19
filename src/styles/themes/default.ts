@@ -26,4 +26,4 @@ export const defaultTheme = {
 		"body": "'Roboto', sans-serif",
 		"title": "'Baloo 2'",
 	}
-};
+} as const;
