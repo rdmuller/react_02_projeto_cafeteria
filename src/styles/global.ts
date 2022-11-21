@@ -7,10 +7,6 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    :focus {
-
-    }
-
     body {
         background-color: ${(props) => props.theme.color["background"]};
     }
@@ -21,7 +17,8 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 1rem;
         font-style: normal;
         line-height: 1.3;
-        color: ${props => props.theme.color["base-text"]}
+        color: ${props => props.theme.color["base-text"]};
+        -webkit-font-smoothing: antialiased;
     }
 
     input {

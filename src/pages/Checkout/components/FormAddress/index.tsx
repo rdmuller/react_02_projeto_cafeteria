@@ -1,6 +1,9 @@
 import { BaseInput, FormContainer, InputContainerRow } from "./styles";
+import { useForm } from "react-hook-form";
 
 export function FormAddress() {
+	const {register, handleSubmit} = useForm();
+
 	return (
 		<FormContainer>
 			<form action="">
