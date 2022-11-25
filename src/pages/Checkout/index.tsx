@@ -10,9 +10,9 @@ import { TitleContainer } from "./components/TitleContainer";
 import { BaseContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer, SummaryTotals, LabelSummary, LabelTotalSummary, ButtonConfirm } from "./styles";
 
 
-const addressFormSchema = zod.object({
+const addressFormValidationSchema = zod.object({
 	CEP: zod.number().min(0).max(99999999),
-	street: zod.string(),
+	street: zod.string().min(1,"Rua não informada"),
 	number: zod.number(),
 	complement: zod.string(),
 	district: zod.string(),
@@ -20,25 +20,25 @@ const addressFormSchema = zod.object({
 	state: zod.string().min(1).max(2),
 });
 
-type AddressFormData = zod.infer<typeof addressFormSchema>;
+type AddressFormData = zod.infer<typeof addressFormValidationSchema>;
 
 export function Checkout() {
 	const { products, totalDelivery, totalItems, totalValue } = useContext(ShoppingCartContext);
 
 	const addressForm = useForm<AddressFormData>({
-		resolver: zodResolver(addressFormSchema)
+		resolver: zodResolver(addressFormValidationSchema),
 	});
-	const { handleSubmit, watch } = addressForm;
+	const { handleSubmit, watch, formState } = addressForm;
 
 	function handleSubmitAddress(data: AddressFormData) {
-		console.log(data);
+		console.log("submit");
+		console.log(JSON.stringify(data));
 	}
 
-	/*const cep = watch("CEP");
-	console.log(cep);*/
+	console.log(formState.errors);
 
 	return (
-		<form onSubmit={handleSubmit(handleSubmitAddress)}>
+		<form onSubmit={handleSubmit(handleSubmitAddress)} action="">
 			<MainContainer>
 				<RequestContainer>
 					<h4>Complete seu pedido</h4>
