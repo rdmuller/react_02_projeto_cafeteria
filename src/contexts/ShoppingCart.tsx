@@ -8,6 +8,7 @@ interface ShoppingCartContextType {
 	totalDelivery: number;
 	totalItems: number;
 	qtyItems: number;
+	paymentMode: string;
     addProductToCart: (product: ShoppingCartProduct) => void;
 	changeQuantity: (product: ShoppingCartProduct, addQty: number) => void;
 	removeProduct: (productId: number) => void;
@@ -27,6 +28,7 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 			totalItems: 0,
 			totalDelivery: 0,
 			qtyItems: 0,
+			paymentMode: "CREDIT_CARD",
 		}, 
 		() => {
 			const storedState = localStorage.getItem("@react-02-coffe:cartState");
@@ -71,10 +73,10 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 		});
 	}	
 
-	const { totalDelivery, totalItems, totalValue, products, qtyItems, } = shoppingCartState;
+	const { totalDelivery, totalItems, totalValue, products, qtyItems, paymentMode } = shoppingCartState;
     
 	return (
-		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, addProductToCart, changeQuantity, removeProduct, }}>
+		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, paymentMode, addProductToCart, changeQuantity, removeProduct, }}>
 			{children}
 		</ShoppingCartContext.Provider>
 	);

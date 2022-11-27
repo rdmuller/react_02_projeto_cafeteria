@@ -11,13 +11,13 @@ import { BaseContainer, CofeeCardContainer, MainContainer, RequestContainer, Sum
 
 
 const addressFormValidationSchema = zod.object({
-	CEP: zod.number().min(0).max(99999999),
+	CEP: zod.number().min(1,"CEP deve ser informado").max(99999999),
 	street: zod.string().min(1,"Rua não informada"),
-	number: zod.number(),
+	number: zod.number().min(1, "Número deve ser informado"),
 	complement: zod.string(),
 	district: zod.string(),
 	city: zod.string(),
-	state: zod.string().min(1).max(2),
+	state: zod.string().min(1,"UF deve ser informada").max(2),
 });
 
 type AddressFormData = zod.infer<typeof addressFormValidationSchema>;
@@ -26,7 +26,10 @@ export function Checkout() {
 	const { products, totalDelivery, totalItems, totalValue } = useContext(ShoppingCartContext);
 
 	const addressForm = useForm<AddressFormData>({
-		resolver: zodResolver(addressFormValidationSchema),
+		resolver: zodResolver(addressFormValidationSchema), /*defaultValues: {
+			CEP: 0,
+			number: 0,
+		}*/
 	});
 	const { handleSubmit, watch, formState } = addressForm;
 

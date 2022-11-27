@@ -16,6 +16,7 @@ interface ShoppingCartState {
 	totalDelivery: number;
 	totalValue: number;
 	qtyItems: number;
+	paymentMode: "CREDIT_CARD" | "BANK" | "MONEY";
 }
 
 export function ShoppingCartReducer(state: ShoppingCartState, action: any) {

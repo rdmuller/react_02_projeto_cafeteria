@@ -14,3 +14,9 @@ export const InputContainerRow = styled.div`
     flex-direction: row;
     gap: 0.75rem;
 `;
+
+export const ErrorText = styled.span`
+    color: ${props => props.theme.color["yellow-dark"]};
+    display: block;
+    padding: .75rem;
+`;
