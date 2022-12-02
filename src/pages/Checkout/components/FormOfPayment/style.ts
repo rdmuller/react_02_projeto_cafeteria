@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const FormPaymentContainer = styled.div`
     display: grid;
@@ -7,22 +7,35 @@ export const FormPaymentContainer = styled.div`
     grid-gap: 0.75rem;
 `;
 
-export const ButtonPayment = styled.button`
+interface ButtonPaymentProps {
+    variant?: "selected" | "default";
+}
+
+export const ButtonPayment = styled.button<ButtonPaymentProps>`
     display: flex;
     padding: 1rem;
     font-size: 0.75rem;
-    background-color: ${porps => porps.theme.color["base-button"]};
     color: ${props => props.theme.color["base-text"]};
     gap: 0.75rem;
     border-radius: 6px;
-    cursor: pointer;
-    border: 0;
 
-    :hover {
-        background-color: ${props => props.theme.color["base-hover"]};
-    }
+    ${props => props.variant != "selected" && css`
+        background-color: ${props => props.theme.color["base-button"]};
+        cursor: pointer;
+        border: 0;
+
+        &:hover {
+            background-color: ${props => props.theme.color["base-hover"]};
+        }
+    `}
+
+    ${props => props.variant === "selected" && css`
+        background-color: ${props => props.theme.color["purple-light"]};
+        border: 1px solid ${props => props.theme.color["purple"]};
+    `}
 
     svg {
         color: ${props => props.theme.color.purple}
     }
+
 `;

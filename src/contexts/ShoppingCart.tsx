@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { ActionTypes } from "../reducers/ShoppingCart/actions";
-import { ShoppingCartProduct, ShoppingCartReducer } from "../reducers/ShoppingCart/reducer";
+import { ShoppingCartProduct, ShoppingCartReducer, PaymentMode } from "../reducers/ShoppingCart/reducer";
 
 interface ShoppingCartContextType {
     products: ShoppingCartProduct[];
@@ -8,10 +8,11 @@ interface ShoppingCartContextType {
 	totalDelivery: number;
 	totalItems: number;
 	qtyItems: number;
-	paymentMode: string;
+	paymentMode: PaymentMode;
     addProductToCart: (product: ShoppingCartProduct) => void;
 	changeQuantity: (product: ShoppingCartProduct, addQty: number) => void;
 	removeProduct: (productId: number) => void;
+	changePaymentMode: (paymentmode: PaymentMode) => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
@@ -73,10 +74,19 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 		});
 	}	
 
+	function changePaymentMode(paymentMode: PaymentMode) {
+		dispatch({
+			type: ActionTypes.CHANGE_PAYMENT_MODE,
+			payload: {
+				paymentMode,
+			}
+		});
+	}
+
 	const { totalDelivery, totalItems, totalValue, products, qtyItems, paymentMode } = shoppingCartState;
     
 	return (
-		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, paymentMode, addProductToCart, changeQuantity, removeProduct, }}>
+		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, paymentMode, addProductToCart, changeQuantity, removeProduct, changePaymentMode }}>
 			{children}
 		</ShoppingCartContext.Provider>
 	);

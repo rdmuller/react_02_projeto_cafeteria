@@ -38,7 +38,9 @@ export function Checkout() {
 		console.log(JSON.stringify(data));
 	}
 
-	console.log(formState.errors);
+	//console.log(formState.errors);
+	const end = watch("street");
+	console.log(end);
 
 	return (
 		<form onSubmit={handleSubmit(handleSubmitAddress)} action="">

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ActionTypes } from "./actions";
 
+export type PaymentMode = "CREDIT_CARD" | "BANK" | "MONEY";
+
 export interface ShoppingCartProduct {
     productId: number;
     productQuantity: number;
@@ -16,7 +18,7 @@ interface ShoppingCartState {
 	totalDelivery: number;
 	totalValue: number;
 	qtyItems: number;
-	paymentMode: "CREDIT_CARD" | "BANK" | "MONEY";
+	paymentMode: PaymentMode;
 }
 
 export function ShoppingCartReducer(state: ShoppingCartState, action: any) {
@@ -63,6 +65,13 @@ export function ShoppingCartReducer(state: ShoppingCartState, action: any) {
 		});
 
 		return calculateTotals({...state, products,});
+	}
+
+	case ActionTypes.CHANGE_PAYMENT_MODE: {
+		return {
+			...state,
+			paymentMode: action.payload.paymentMode,
+		};
 	}
 
 	default:
