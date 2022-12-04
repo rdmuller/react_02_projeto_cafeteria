@@ -8,8 +8,6 @@ import { FormOfPayment } from "./components/FormOfPayment";
 import { ProductCart } from "./components/ProductCart";
 import { TitleContainer } from "./components/TitleContainer";
 import { BaseContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer, SummaryTotals, LabelSummary, LabelTotalSummary, ButtonConfirm } from "./styles";
-import { Navigate, redirect } from "react-router-dom";
-import { ProductDescription } from "../Home/components/Product/style";
 
 
 const addressFormValidationSchema = zod.object({
