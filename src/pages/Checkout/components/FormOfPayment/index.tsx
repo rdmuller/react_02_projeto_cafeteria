@@ -4,7 +4,7 @@ import { ShoppingCartContext } from "../../../../contexts/ShoppingCart";
 import { ButtonPayment, FormPaymentContainer } from "./style";
 
 export function FormOfPayment() {
-	const { changePaymentMode, paymentMode } = useContext(ShoppingCartContext);
+	const { changePaymentMode, paymentMode, } = useContext(ShoppingCartContext);
 
 	function handleCreditCardClick() {
 		changePaymentMode("CREDIT_CARD");

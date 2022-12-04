@@ -3,6 +3,16 @@ import { ActionTypes } from "./actions";
 
 export type PaymentMode = "CREDIT_CARD" | "BANK" | "MONEY";
 
+export interface Address {
+	CEP: number;
+	street: string;
+	number: number
+	complement: string;
+	district: string;
+	city: string;
+	state: string;
+}
+
 export interface ShoppingCartProduct {
     productId: number;
     productQuantity: number;
@@ -13,11 +23,12 @@ export interface ShoppingCartProduct {
 }
 
 interface ShoppingCartState {
-	products: ShoppingCartProduct[],
+	products: ShoppingCartProduct[],	
 	totalItems: number;
 	totalDelivery: number;
 	totalValue: number;
 	qtyItems: number;
+	address: Address;
 	paymentMode: PaymentMode;
 }
 
@@ -71,6 +82,13 @@ export function ShoppingCartReducer(state: ShoppingCartState, action: any) {
 		return {
 			...state,
 			paymentMode: action.payload.paymentMode,
+		};
+	}
+
+	case ActionTypes.UPDATE_ADDRESS: {
+		return {
+			...state,
+			address: action.payload.address,
 		};
 	}
 

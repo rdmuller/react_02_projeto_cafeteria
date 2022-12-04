@@ -8,6 +8,8 @@ import { FormOfPayment } from "./components/FormOfPayment";
 import { ProductCart } from "./components/ProductCart";
 import { TitleContainer } from "./components/TitleContainer";
 import { BaseContainer, CofeeCardContainer, MainContainer, RequestContainer, SummaryContainer, SummaryTotals, LabelSummary, LabelTotalSummary, ButtonConfirm } from "./styles";
+import { Navigate, redirect } from "react-router-dom";
+import { ProductDescription } from "../Home/components/Product/style";
 
 
 const addressFormValidationSchema = zod.object({
@@ -23,24 +25,27 @@ const addressFormValidationSchema = zod.object({
 type AddressFormData = zod.infer<typeof addressFormValidationSchema>;
 
 export function Checkout() {
-	const { products, totalDelivery, totalItems, totalValue } = useContext(ShoppingCartContext);
+	const { products, totalDelivery, totalItems, totalValue, address, updateAddress } = useContext(ShoppingCartContext);
 
 	const addressForm = useForm<AddressFormData>({
-		resolver: zodResolver(addressFormValidationSchema), /*defaultValues: {
-			CEP: 0,
-			number: 0,
-		}*/
+		resolver: zodResolver(addressFormValidationSchema), defaultValues: {
+			CEP: address.CEP,
+			street: address.street,
+			number: address.number,
+			complement: address.complement,
+			district: address.district,
+			city: address.city,
+			state: address.state,
+		}
 	});
-	const { handleSubmit, watch, formState } = addressForm;
+	const { handleSubmit, /*watch, formState*/ } = addressForm;
 
 	function handleSubmitAddress(data: AddressFormData) {
-		console.log("submit");
-		console.log(JSON.stringify(data));
+		updateAddress(data);
+		//this.props.history.push("/success");
 	}
 
 	//console.log(formState.errors);
-	const end = watch("street");
-	console.log(end);
 
 	return (
 		<form onSubmit={handleSubmit(handleSubmitAddress)} action="">

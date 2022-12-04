@@ -34,6 +34,7 @@ export function FormAddress() {
 		<FormContainer>
 			<InputContainerRow>
 				<BaseInput 
+					id="CEP"
 					placeholder="CEP"  
 					maxLength={8} 
 					required
@@ -50,6 +51,7 @@ export function FormAddress() {
 			</InputContainerRow>			
 			<InputContainerRow>
 				<BaseInput 
+					id="street"
 					placeholder="Rua" 
 					required
 					style={{flexGrow:"1"}}
@@ -58,12 +60,14 @@ export function FormAddress() {
 			</InputContainerRow>
 			<InputContainerRow>
 				<BaseInput 
+					id="number"
 					placeholder="Número"
 					type="number"
 					required
 					{...register("number", { valueAsNumber: true })}
 				/>
 				<BaseInput 
+					id="complement"
 					placeholder="Complemento" 
 					style={{flexGrow:"1"}} 
 					{...register("complement")}
@@ -71,16 +75,19 @@ export function FormAddress() {
 			</InputContainerRow>
 			<InputContainerRow>
 				<BaseInput 
+					id="district"
 					placeholder="Bairro" 
 					{...register("district")}
 				/>
-				<BaseInput 				
+				<BaseInput 
+					id="city"
 					placeholder="Cidade"  
 					required
 					style={{flexGrow:"1"}} 
 					{...register("city")}
 				/>
 				<BaseInput 
+					id="state"
 					placeholder="UF" 
 					required
 					maxLength={2} 

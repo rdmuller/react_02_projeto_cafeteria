@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { ActionTypes } from "../reducers/ShoppingCart/actions";
-import { ShoppingCartProduct, ShoppingCartReducer, PaymentMode } from "../reducers/ShoppingCart/reducer";
+import { ShoppingCartProduct, ShoppingCartReducer, PaymentMode, Address } from "../reducers/ShoppingCart/reducer";
 
 interface ShoppingCartContextType {
     products: ShoppingCartProduct[];
@@ -9,10 +9,12 @@ interface ShoppingCartContextType {
 	totalItems: number;
 	qtyItems: number;
 	paymentMode: PaymentMode;
+	address: Address;
     addProductToCart: (product: ShoppingCartProduct) => void;
 	changeQuantity: (product: ShoppingCartProduct, addQty: number) => void;
 	removeProduct: (productId: number) => void;
-	changePaymentMode: (paymentmode: PaymentMode) => void;
+	changePaymentMode: (paymentMode: PaymentMode) => void;
+	updateAddress: (address: Address) => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
@@ -22,13 +24,22 @@ type ShoppingCartContextProviderProps = {
 }
 
 export function ShoppingCartContextProvider({children, }: ShoppingCartContextProviderProps) {
-	const [shoppingCartState, dispatch] = useReducer(ShoppingCartReducer, 
+	const [shoppingCartState, dispatch] = useReducer(ShoppingCartReducer,
 		{ 
 			products: [],
 			totalValue: 0,
 			totalItems: 0,
 			totalDelivery: 0,
 			qtyItems: 0,
+			address: {
+				CEP: null,
+				street: "",
+				number: null,
+				complement: "",
+				district: "",
+				city: "",
+				state: "",
+			},
 			paymentMode: "CREDIT_CARD",
 		}, 
 		() => {
@@ -37,7 +48,15 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 			if (storedState) {
 				return JSON.parse(storedState);
 			} else {
-				return { products: [], totalValue: 0, totalItems: 0, totalDelivery: 0, qtyItems: 0 };
+				return { products: [], totalValue: 0, totalItems: 0, totalDelivery: 0, qtyItems: 0, paymentMode: "MONEY", address: { 
+					CEP: null,
+					street: "",
+					number: null,
+					complement: "",
+					district: "",
+					city: "",
+					state: "", 
+				} };
 			}
 		});
 
@@ -83,10 +102,19 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 		});
 	}
 
-	const { totalDelivery, totalItems, totalValue, products, qtyItems, paymentMode } = shoppingCartState;
+	function updateAddress(address: Address) {
+		dispatch({
+			type: ActionTypes.UPDATE_ADDRESS,
+			payload: {
+				address,
+			}
+		});
+	}
+
+	const { totalDelivery, totalItems, totalValue, products, qtyItems, paymentMode, address } = shoppingCartState;
     
 	return (
-		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, paymentMode, addProductToCart, changeQuantity, removeProduct, changePaymentMode }}>
+		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, paymentMode, address, addProductToCart, changeQuantity, removeProduct, changePaymentMode, updateAddress, }}>
 			{children}
 		</ShoppingCartContext.Provider>
 	);
