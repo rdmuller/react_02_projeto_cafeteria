@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import * as zod from "zod";
 import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ShoppingCartContext } from "../../contexts/ShoppingCart";
 import { FormAddress } from "./components/FormAddress";
@@ -38,8 +39,11 @@ export function Checkout() {
 	});
 	const { handleSubmit, /*watch, formState*/ } = addressForm;
 
-	function handleSubmitAddress(data: AddressFormData) {
+	async function handleSubmitAddress(data: AddressFormData) {
+		const navigate = useNavigate();
+
 		updateAddress(data);
+		await navigate("/success");
 		//this.props.history.push("/success");
 	}
 
