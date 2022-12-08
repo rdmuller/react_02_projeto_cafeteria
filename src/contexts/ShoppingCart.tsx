@@ -15,6 +15,7 @@ interface ShoppingCartContextType {
 	removeProduct: (productId: number) => void;
 	changePaymentMode: (paymentMode: PaymentMode) => void;
 	updateAddress: (address: Address) => void;
+	clearCart: () => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
@@ -111,10 +112,17 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 		});
 	}
 
+	function clearCart() {
+		dispatch({
+			type: ActionTypes.CLEAR_CART,
+			payload: {}
+		});
+	}
+
 	const { totalDelivery, totalItems, totalValue, products, qtyItems, paymentMode, address } = shoppingCartState;
     
 	return (
-		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, paymentMode, address, addProductToCart, changeQuantity, removeProduct, changePaymentMode, updateAddress, }}>
+		<ShoppingCartContext.Provider value={{ totalValue, totalDelivery, qtyItems, totalItems, products, paymentMode, address, addProductToCart, changeQuantity, removeProduct, changePaymentMode, updateAddress, clearCart, }}>
 			{children}
 		</ShoppingCartContext.Provider>
 	);

@@ -1,6 +1,6 @@
-import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import imageCoffee from "../../../../assets/logo-intro.svg";
-import { ContainerIcon, ItemsContainer, SectionContainer, TitleContainer } from "./style";
+import { RoundedIcon } from "../../../../components/RoundedIcon";
+import { ItemsContainer, SectionContainer, TitleContainer } from "./style";
 
 export function Intro () {
 	return (<>
@@ -12,27 +12,19 @@ export function Intro () {
 				</TitleContainer>
 				<ItemsContainer>
 					<div>
-						<ContainerIcon iconColor="yellowDark">
-							<ShoppingCart size={16} weight="fill"/>
-						</ContainerIcon>
+						<RoundedIcon color="yellowDark" size={16} iconStyle="ShoppingCart" />
 						<span>Compra simples e segura</span>
 					</div>
 					<div>
-						<ContainerIcon iconColor="gray">
-							<Package size={16} weight="fill"/>
-						</ContainerIcon>
+						<RoundedIcon color="gray" size={16} iconStyle="Package" />
 						<span>Embalagem mantém o café intacto</span>
 					</div>
 					<div>
-						<ContainerIcon iconColor="yellow">
-							<Timer size={16} weight="fill"/>
-						</ContainerIcon>
+						<RoundedIcon color="yellow" size={16} iconStyle="Timer" />
 						<span>Entrega rápida e rastreada</span>
 					</div>
 					<div>
-						<ContainerIcon iconColor="purple">
-							<Coffee size={16} weight="fill"/>
-						</ContainerIcon>
+						<RoundedIcon color="purple" size={16} iconStyle="Coffee" />
 						<span>O café chega fresquinho até você</span>
 					</div>
 				</ItemsContainer>

@@ -25,6 +25,7 @@ type AddressFormData = zod.infer<typeof addressFormValidationSchema>;
 
 export function Checkout() {
 	const { products, totalDelivery, totalItems, totalValue, address, updateAddress } = useContext(ShoppingCartContext);
+	const navigate = useNavigate();
 
 	const addressForm = useForm<AddressFormData>({
 		resolver: zodResolver(addressFormValidationSchema), defaultValues: {
@@ -39,11 +40,10 @@ export function Checkout() {
 	});
 	const { handleSubmit, /*watch, formState*/ } = addressForm;
 
-	async function handleSubmitAddress(data: AddressFormData) {
-		const navigate = useNavigate();
-
+	function handleSubmitAddress(data: AddressFormData) {
+		
 		updateAddress(data);
-		await navigate("/success");
+		navigate("/success");
 		//this.props.history.push("/success");
 	}
 

@@ -1,20 +1,23 @@
 import { Bank, CreditCard, Money } from "phosphor-react";
-import { useContext } from "react";
+import { FormEvent, useContext } from "react";
 import { ShoppingCartContext } from "../../../../contexts/ShoppingCart";
 import { ButtonPayment, FormPaymentContainer } from "./style";
 
 export function FormOfPayment() {
 	const { changePaymentMode, paymentMode, } = useContext(ShoppingCartContext);
 
-	function handleCreditCardClick() {
+	function handleCreditCardClick(e: FormEvent) {
+		e.preventDefault();
 		changePaymentMode("CREDIT_CARD");
 	}
 
-	function handleBankClick() {
+	function handleBankClick(e: FormEvent) {
+		e.preventDefault();
 		changePaymentMode("BANK");
 	}
 
-	function handleMoneyClick() {
+	function handleMoneyClick(e: FormEvent) {
+		e.preventDefault();
 		changePaymentMode("MONEY");
 	}
 

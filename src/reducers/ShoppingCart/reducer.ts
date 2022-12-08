@@ -92,6 +92,29 @@ export function ShoppingCartReducer(state: ShoppingCartState, action: any) {
 		};
 	}
 
+	case ActionTypes.CLEAR_CART: {
+		/*return { 
+			...state,
+			totalValue: 0, 
+			totalItems: 0, 
+			totalDelivery: 0, 
+			qtyItems: 0, 
+			paymentMode: "CREDIT_CARD", 
+			address: { 
+				CEP: null,
+				street: "", 
+				number: null, 
+				complement: "", 
+				district: "", 
+				city: "", 
+				state: ""
+			},
+			products: []
+		};*/
+
+		return null;
+	}
+
 	default:
 		return state;   
 	}
