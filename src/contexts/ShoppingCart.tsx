@@ -18,6 +18,17 @@ interface ShoppingCartContextType {
 	clearCart: () => void;
 }
 
+const initialContext = { totalValue: 0, totalItems: 0, totalDelivery: 0, qtyItems: 0, paymentMode: "CREDIT_CARD",
+	address: { 
+		CEP: 0,
+		street: "", 
+		number: 0, 
+		complement: "", 
+		district: "", 
+		city: "", 
+		state: ""
+	}} as ShoppingCartContextType;
+
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
 
 type ShoppingCartContextProviderProps = {
@@ -115,7 +126,23 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 	function clearCart() {
 		dispatch({
 			type: ActionTypes.CLEAR_CART,
-			payload: {}
+			payload: {
+				totalValue: 0, 
+				totalItems: 0, 
+				totalDelivery: 0, 
+				qtyItems: 0, 
+				paymentMode: "CREDIT_CARD", 
+				address: { 
+					CEP: null,
+					street: "", 
+					number: null, 
+					complement: "", 
+					district: "", 
+					city: "", 
+					state: ""
+				},
+				products: []
+			}
 		});
 	}
 

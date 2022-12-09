@@ -4,9 +4,9 @@ import { ActionTypes } from "./actions";
 export type PaymentMode = "CREDIT_CARD" | "BANK" | "MONEY";
 
 export interface Address {
-	CEP: number;
+	CEP?: number;
 	street: string;
-	number: number
+	number?: number;
 	complement: string;
 	district: string;
 	city: string;
@@ -93,26 +93,12 @@ export function ShoppingCartReducer(state: ShoppingCartState, action: any) {
 	}
 
 	case ActionTypes.CLEAR_CART: {
-		/*return { 
+		return { 
 			...state,
-			totalValue: 0, 
-			totalItems: 0, 
-			totalDelivery: 0, 
-			qtyItems: 0, 
-			paymentMode: "CREDIT_CARD", 
-			address: { 
-				CEP: null,
-				street: "", 
-				number: null, 
-				complement: "", 
-				district: "", 
-				city: "", 
-				state: ""
-			},
-			products: []
-		};*/
+			address: action.payload.address,
+		};
 
-		return null;
+		return state;
 	}
 
 	default:
