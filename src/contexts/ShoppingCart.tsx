@@ -18,11 +18,13 @@ interface ShoppingCartContextType {
 	clearCart: () => void;
 }
 
-const initialContext = { totalValue: 0, totalItems: 0, totalDelivery: 0, qtyItems: 0, paymentMode: "CREDIT_CARD",
+const productsEmpty: ShoppingCartProduct[] = [];
+
+const initialContext = { totalValue: 0, totalItems: 0, totalDelivery: 0, qtyItems: 0, paymentMode: "CREDIT_CARD", products: productsEmpty,
 	address: { 
-		CEP: 0,
+		CEP: undefined,
 		street: "", 
-		number: 0, 
+		number: undefined, 
 		complement: "", 
 		district: "", 
 		city: "", 
@@ -36,24 +38,7 @@ type ShoppingCartContextProviderProps = {
 }
 
 export function ShoppingCartContextProvider({children, }: ShoppingCartContextProviderProps) {
-	const [shoppingCartState, dispatch] = useReducer(ShoppingCartReducer,
-		{ 
-			products: [],
-			totalValue: 0,
-			totalItems: 0,
-			totalDelivery: 0,
-			qtyItems: 0,
-			address: {
-				CEP: null,
-				street: "",
-				number: null,
-				complement: "",
-				district: "",
-				city: "",
-				state: "",
-			},
-			paymentMode: "CREDIT_CARD",
-		}, 
+	const [shoppingCartState, dispatch] = useReducer(ShoppingCartReducer, initialContext, 
 		() => {
 			const storedState = localStorage.getItem("@react-02-coffe:cartState");
 
@@ -127,23 +112,12 @@ export function ShoppingCartContextProvider({children, }: ShoppingCartContextPro
 		dispatch({
 			type: ActionTypes.CLEAR_CART,
 			payload: {
-				totalValue: 0, 
-				totalItems: 0, 
-				totalDelivery: 0, 
-				qtyItems: 0, 
-				paymentMode: "CREDIT_CARD", 
-				address: { 
-					CEP: null,
-					street: "", 
-					number: null, 
-					complement: "", 
-					district: "", 
-					city: "", 
-					state: ""
-				},
-				products: []
+				...initialContext,
+				address: shoppingCartState.address,
+				paymentMode: shoppingCartState.paymentMode, 
 			}
 		});
+		//localStorage.removeItem("@react-02-coffe:cartState");
 	}
 
 	const { totalDelivery, totalItems, totalValue, products, qtyItems, paymentMode, address } = shoppingCartState;

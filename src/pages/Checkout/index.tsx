@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import * as zod from "zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -41,11 +41,21 @@ export function Checkout() {
 	const { handleSubmit, /*watch, formState*/ } = addressForm;
 
 	function handleSubmitAddress(data: AddressFormData) {
-		
 		updateAddress(data);
-		navigate("/success");
-		//this.props.history.push("/success");
+		
+		if (totalValue) {
+			navigate("/success");
+		} else {
+			alert("O carrinho de compras está vazio");
+		}
 	}
+
+	useEffect(() => {
+		if (!totalValue) {
+			alert("O carrinho de compras está vazio");
+			navigate("/");
+		}
+	},[]);
 
 	//console.log(formState.errors);
 

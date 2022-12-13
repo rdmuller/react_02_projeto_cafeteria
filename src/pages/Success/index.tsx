@@ -6,14 +6,14 @@ import { Address, PaymentMode } from "../../reducers/ShoppingCart/reducer";
 import { DelliveryCardContainer, DelliveryContainer, DelliveryInfoContainer } from "./style";
 
 export function Success() {
-	const { address, paymentMode } = useContext(ShoppingCartContext);
+	const { address, paymentMode, clearCart } = useContext(ShoppingCartContext);
 	const [ addressDelivery, setAddressDelivery ] = useState<Address>();
 	const [ paymentModeSel, setPaymentModeSel ] = useState<PaymentMode>();
 
 	useEffect(() => {
 		setAddressDelivery(address);
 		setPaymentModeSel(paymentMode);
-		//clearCart();
+		clearCart();
 	},[]);
 
 	return (
@@ -25,7 +25,7 @@ export function Success() {
 					<div>
 						<RoundedIcon size={32} iconStyle="MapPin" color="purple" />
 						<div>
-							<span>Entrega em <b>{addressDelivery?.street}, 102</b></span>
+							<span>Entrega em <b>{addressDelivery?.street}, {addressDelivery?.number}</b></span>
 							<span>{addressDelivery?.district} - {addressDelivery?.city}, {addressDelivery?.state}</span>
 						</div>
 					</div>

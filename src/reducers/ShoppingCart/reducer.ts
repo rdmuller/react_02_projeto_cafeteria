@@ -93,12 +93,7 @@ export function ShoppingCartReducer(state: ShoppingCartState, action: any) {
 	}
 
 	case ActionTypes.CLEAR_CART: {
-		return { 
-			...state,
-			address: action.payload.address,
-		};
-
-		return state;
+		return action.payload;
 	}
 
 	default:

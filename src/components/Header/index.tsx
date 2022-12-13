@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../contexts/ShoppingCart";
 
 export function Header() {
-	const { qtyItems } = useContext(ShoppingCartContext);
+	const { qtyItems, address } = useContext(ShoppingCartContext);
 
 	return (
 		<HeaderContainer>
@@ -18,7 +18,9 @@ export function Header() {
 				<NavLink to="/checkout" title="">
 					<ButtonLocation>
 						<MapPin size={22} weight="fill" />
-						<span>Farroupilha, RS</span>
+						<span>
+							{address.state ? address.city + ", " + address.state : "Farroupilha, RS"}
+						</span>
 					</ButtonLocation>
 				</NavLink>
 				<NavLink to="/checkout" title="">
